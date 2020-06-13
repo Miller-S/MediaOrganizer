@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet  id="1"  author="Octavia">
+        <createTable  tableName="Title">
+            <column  name="UserID"  type="int"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="Title"  type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet  id="2"  author="Octavia">
+        <createTable  tableName="Account">
+            <column  name="UserID"  type="int"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column  name="UserName"  type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet  id="3"  author="Octavia">
+        <createTable  tableName="Tag">
+            <column  name="TagID"  type="int"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column name="TagName" type="nvarchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="Description"  type="nvarchar(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet  id="4"  author="Octavia">
+        <createTable  tableName="Media">
+            <column  name="MediaID"  type="int"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+            <column name="Path" type="nvarchar(260)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet  id="5"  author="Octavia">
+        <createTable  tableName="TagMediaLink">
+            <column  name="TagID"  type="int" >
+                <constraints nullable="false" />
+            </column>
+            <column  name="MediaID"  type="int"  >
+                <constraints   nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet  author="Octavia"  id="6">
+        <addForeignKeyConstraint  baseColumnNames="TagID"
+                                  baseTableName="TagMediaLink"
+                                  constraintName="FK_TagID"
+                                  onDelete="CASCADE"
+                                  onUpdate="CASCADE"
+                                  referencedColumnNames="TagID"
+                                  referencedTableName="Tag"/>
+    </changeSet>
+
+    <changeSet  author="Octavia"  id="7">
+        <addForeignKeyConstraint  baseColumnNames="MediaID"
+                                  baseTableName="TagMediaLink"
+                                  constraintName="FK_MediaID"
+                                  onDelete="CASCADE"
+                                  onUpdate="CASCADE"
+                                  referencedColumnNames="MediaID"
+                                  referencedTableName="Media"/>
+    </changeSet>
+
+    <changeSet  author="Octavia"  id="8">
+        <addPrimaryKey  columnNames="TagID, MediaID"
+                        constraintName="PK_TagMediaLink"
+                        tableName="TagMediaLink"/>
+    </changeSet>
+
+</databaseChangeLog>

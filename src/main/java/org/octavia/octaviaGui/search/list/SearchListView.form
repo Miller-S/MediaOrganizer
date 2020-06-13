@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.octavia.octaviaGui.search.list.SearchListView">
+  <grid id="27dc6" binding="view" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+    <constraints>
+      <xy x="20" y="20" width="1321" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="7baed" class="javax.swing.JLabel" binding="empty">
+        <constraints/>
+        <properties>
+          <enabled value="true"/>
+          <font name="Hey Gorgeous" size="26"/>
+          <horizontalAlignment value="2"/>
+          <text value="Nobody here but us Chickens"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
